@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head> 
+  <!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<!-- <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/user/updateprofile.js"></script>
+
+<!-- Core plugin JavaScript-->
+<!--  <script src="vendor/jquery-easing/jquery.easing.min.js"></script> -->
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<!-- Bootstrap core CSS-->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom fonts for this template-->
+<link href="vendor/font-awesome/css/all.min.css" rel="stylesheet"
+	type="text/css">
+
+<!-- Custom styles for this template-->
+<link href="dist/css/sb-admin.css" rel="stylesheet">
+</head>
+
+<body class="bg-dark">
+<nav style="height: 50px;" class="navbar navbar-light justify-content-between bg-success">
+  <a class="navbar-brand text-light" href="home">
+      <img src="img/repairlogo.png" alt="logo" style="width:25px;" >
+      Nuce - BikeCare
+   </a>
+   
+  <form class="form-inline text-light" th:action="@{/logout}" method="post">
+  Welcome&nbsp;<strong><a class="text-light" title="Click to view profile" id="username" th:href="userprofile" th:text="${username}"></a></strong>&nbsp;&nbsp;
+    <input class="btn btn-success bt form-control mr-sm-2" type="submit" value="Logout" />
+  </form>
+</nav>
+
+
+<div class="container">
+      <div class="card card-register mx-auto mt-5">
+        <div class="card-header bg-success text-light"> Update Profile</div>
+        <div class="card-body">
+
+      <div accept-charset="utf-8">
+        <div class="form-group row">
+            <label for="udname" class="col-sm-4 col-form-label"> Name </label>
+            <div class="col-sm-12">
+            <input  type="text" class="form-control" id="udname">
+            </div>
+        </div>
+
+ 		<div class="form-group row">
+            <label for="udemail" class="col-sm-4 col-form-label"> Email </label>
+            <div class="col-sm-12">
+                <input  type="email" class="form-control" id="udemail">
+            </div>
+        </div>
+
+ 		<div class="form-group row">
+            <label for="udphone" class="col-sm-4 col-form-label"> Phone </label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" id="udphone">
+            </div>
+        </div>
+        <button class="btn btn-primary btn-block bg-success text-light" onclick="saveProfile()"> Save Change
+        </button>
+        <button type="button" class="btn btn-primary btn-block bg-success text-light" onclick="window.location.href='userprofile'"> Cancel 
+        </button>
+    </div>
+    
+    
+    
+   </div>
+  </div>
+ </div> 
+</body>
+</html>

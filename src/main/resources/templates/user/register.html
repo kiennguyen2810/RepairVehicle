@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <script src="js/jquery-3.3.1.min.js" ></script>
+
+    <script type="text/javascript" src="js/user/register.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title> Nuce - BikeCare Register</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/font-awesome/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template-->
+    <link href="dist/css/sb-admin.css" rel="stylesheet">
+
+      <style type="text/css">
+      label.error {
+          display: block;
+          color:red;
+          width: 500px;
+          margin-top: 2px;
+        }
+    </style>
+
+  </head>
+
+  <body class="bg-dark">
+
+    <div class="container">
+      <div class="card card-register mx-auto mt-5">
+        <div class="card-header bg-success text-light"> CoWell - BikeCare Register Account</div>
+        <div class="card-body">
+            <div class="form-group row">
+            <label for="fullname" class="col-sm-4 col-form-label"> Full Name </label>
+              <div class="col-sm-12">
+                <input name="name" type="text" class="form-control" id="name" placeholder=" Full Name ">
+              </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="email" class="col-sm-4 col-form-label"> Email </label>
+              <div class="col-sm-12">
+                <input name="email" type="email" class="form-control" id="email_signup" placeholder="name@example.com">
+              </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="phone" class="col-sm-4 col-form-label"> Number Phone </label>
+              <div class="col-sm-12">
+                <input name="phone" type="text" class="form-control" id="phone_signup" placeholder=" Enter NumberPhone ">
+              </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="username_signup" class="col-sm-4 col-form-label">UserName</label>
+              <div class="col-sm-12">
+                <input name="username" type="text" class="form-control" id="username_signup" placeholder=" Enter UserName ">
+              </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="password_signup" class="col-sm-4 col-form-label">Password</label>
+              <div class="col-sm-12">
+                <input name="password" type="password" class="form-control" id="password_signup" placeholder=" Enter Password ">
+              </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="rppassword_signup" class="col-sm-4 col-form-label">Repeat Password</label>
+              <div class="col-sm-12">
+                <input name="repeatpassword" type="password" class="form-control" id="rppassword_signup" placeholder=" Repeat Password ">
+              </div>
+          </div>
+            <button onclick="register()" class="btn btn-primary btn-block bg-success text-light" >Register</button>
+          
+<!-- 			<button type="submit" class="btn btn-primary btn-block bg-success text-light" onclick="register()">Register</button> -->
+          <div class="text-center">
+            <a class="d-block small mt-3" href="login">Login Page</a>
+            <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

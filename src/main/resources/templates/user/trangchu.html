@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  
+  <title> Trang chủ </title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <script src="js/jquery-3.3.1.min.js" ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/user/bootstrap.min.css">
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/user/trangchu.js"></script>
+
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    #map {
+      height: 80%;
+      width: 95%;
+      margin: 0 auto;
+      margin-top: 25px;
+      margin-bottom: 25px;
+     
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+
+</head>
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzkNoLHwjapV6Wtgg8Nw-g-aniRMadJkg&libraries=places">
+            </script>
+
+
+
+<!-- Modal Header -->
+<body>
+<nav style="height: 50px;" class="navbar navbar-light justify-content-between bg-success">
+  <a class="navbar-brand text-light" href="home">
+      <img src="img/repairlogo.png" alt="logo" style="width:25px;" >
+      Nuce - BikeCare
+   </a>
+   
+  <form class="form-inline text-light" th:action="@{/logout}" method="post">
+  Welcome&nbsp;<strong><a class="text-light" id="username" title="Click to view profile" th:href="userprofile" th:text="${username}"></a></strong>&nbsp;&nbsp;
+    <input class="btn btn-success bt form-control mr-sm-2" type="submit" value="Logout" />
+  </form>
+</nav>
+<div align="center">
+	<strong>Mode of Travel: </strong>
+	<select class="custom-select" id="mode" onchange="calcRoute();" style="width: 25%;" >
+	  <option value="DRIVING">Driving</option>
+	  <option value="WALKING">Walking</option>
+	</select>
+</div>
+
+<div id="map">
+</div>
+
+<!-- Modal Service -->
+<div class="modal" tabindex="-1" role="dialog" id="modal_service">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header bg-success">
+        <h5 class="modal-title text-light "> Service </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+<div class="modal-body">
+  <form method="GET">
+    <ul class="listService">
+	</ul>
+    <input type="button" value="Báo hỏng" class="btn btn-danger btnnnn" data-dismiss="modal" onclick="getShopAround()">
+  </form>
+</div>
+</div>
+</div>
+</div>
+
+  
+</body>
+  </html>
