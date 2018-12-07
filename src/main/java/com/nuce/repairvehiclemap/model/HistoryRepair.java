@@ -2,6 +2,7 @@ package com.nuce.repairvehiclemap.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -36,16 +37,19 @@ public class HistoryRepair {
 	@NotNull
 	private Date time;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "id_account")
+	@JsonIgnoreProperties("historyRepairs")
 	private Account account;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "id_shop")
+	@JsonIgnoreProperties("historyRepairs")
 	private Shop shop;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "id_service")
+	@JsonIgnoreProperties("historyRepairs")
 	private Service service;
 
 

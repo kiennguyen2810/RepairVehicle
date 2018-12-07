@@ -5,7 +5,7 @@ $(document).ready(function() {
 	  getServiceControlDiv.index = 1;
 	  map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(getServiceControlDiv);
 });
-     
+
 function showModal_Service(){
 	$('.listService').empty();
 	 showlistService();
@@ -125,7 +125,6 @@ function getShopAround(){
                     strokeColor: 'RED',
                     fillOpacity: 0.5,
 //                    strokeWeight: 0.4
-                    
                 }
               });
         	map.setCenter(new google.maps.LatLng(latitude, longitude));
@@ -214,11 +213,18 @@ function calcRoute(userLatLng, position, directionsDisplay) {
    function addMarkerWithTimeout(shop, timeout, userLatLng, infowindow, directionsDisplay) {
      window.setTimeout(function() {
     	 var position = {lat: shop.latitude, lng: shop.longitude}
-    	 var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-       markers.push(new google.maps.Marker({
+//    	 var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+//    	 var image = 'http://localhost:8080/repairvehicle/img/logomaker.png';
+    	 var icon = {
+    			    url: "http://localhost:8080/repairvehicle/img/logomaker.png", // url
+    			    scaledSize: new google.maps.Size(30, 30), // scaled size
+//    			    origin: new google.maps.Point(0,0), // origin
+    			    anchor: new google.maps.Point(30, 30) // anchor
+    			};
+    	 markers.push(new google.maps.Marker({
          position: position,
          map: map,
-         icon: image,
+         icon: icon,
          animation: google.maps.Animation.DROP
        }));
        //event click marker shop

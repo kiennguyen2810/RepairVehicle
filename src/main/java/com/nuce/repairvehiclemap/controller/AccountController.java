@@ -109,12 +109,17 @@ public class AccountController {
 	
 	@RequestMapping(value = {"/", "/home"})
 	public String home(Model model) {
-		if(httpSession.getAttribute("role").equals("ROLE_USER")){
-			model.addAttribute("username", httpSession.getAttribute("username"));
-			return "user/trangchu";
+		if(httpSession.getAttribute("role")!=null){
+			if(httpSession.getAttribute("role").equals("ROLE_USER")){
+				model.addAttribute("username", httpSession.getAttribute("username"));
+				return "user/trangchu";
+			} else{
+				return "redirect:/login";
+			}
 		} else{
 			return "redirect:/login";
 		}
+		
 	}
 	
 

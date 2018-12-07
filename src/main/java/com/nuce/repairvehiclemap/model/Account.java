@@ -55,8 +55,9 @@ public class Account {
 	@Size(max = 45)
 	private String email;
 
-	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<HistoryRepair> historyRepairs;
+	@OneToMany(mappedBy = "account",fetch = FetchType.EAGER,  cascade = CascadeType.PERSIST)
+	@JsonIgnoreProperties("account")
+	private List<HistoryRepair> historyRepairs;
 
 //	@Column(nullable = false, updatable = false)
 //	@Temporal(TemporalType.TIMESTAMP)
@@ -139,15 +140,12 @@ public class Account {
 		this.email = email;
 	}
 
-	public Set<HistoryRepair> getHistoryRepairs() {
+	public List<HistoryRepair> getHistoryRepairs() {
 		return historyRepairs;
 	}
 
-	public void setHistoryRepairs(Set<HistoryRepair> historyRepairs) {
+	public void setHistoryRepairs(List<HistoryRepair> historyRepairs) {
 		this.historyRepairs = historyRepairs;
 	}
-
-	
-
 
 }

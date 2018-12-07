@@ -1,7 +1,8 @@
 package com.nuce.repairvehiclemap.controller;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,10 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nuce.repairvehiclemap.model.HistoryRepair;
-import com.nuce.repairvehiclemap.model.Service;
 import com.nuce.repairvehiclemap.service.HistoryRepairServ;
 
 
@@ -40,7 +40,6 @@ public class HistoryRepairController {
 		}
 	}
 	
-	
 	@PostMapping("/savehistoryrepair/{username}/{idshop}")
 	public ResponseEntity<?> saveHistoryRepair(@PathVariable("username") String username, @PathVariable("idshop") Integer idShop, @RequestBody List<Integer> idServices){
 		historyRepairServ.saveHistoryRepair(username, idShop, idServices);		
@@ -49,7 +48,17 @@ public class HistoryRepairController {
 	
 	@GetMapping("/gethistoryrepair/{username}")
 	public ResponseEntity<?> gethistoryrepair(@PathVariable("username") String userName){
-		Set<HistoryRepair> historyRepairs = historyRepairServ.getHistoryRepair(userName);
+		List<HistoryRepair> historyRepairs = historyRepairServ.getHistoryRepair(userName);
+		Collections.sort(historyRepairs, Comparator.comparingInt(HistoryRepair::getId));
+		Collections.reverse(historyRepairs);
+		return ResponseEntity.accepted().body(historyRepairs);
+	}
+	
+	@GetMapping("/gethistoryrepair")
+	public ResponseEntity<?> searchHistoryrepair(@RequestParam("username") String userName, @RequestParam("textsearch") String textSearch, @RequestParam("date") String date){
+		List<HistoryRepair> historyRepairs = historyRepairServ.searchHistoryRepair(userName, textSearch, date);
+		Collections.sort(historyRepairs, Comparator.comparingInt(HistoryRepair::getId));
+		Collections.reverse(historyRepairs);
 		return ResponseEntity.accepted().body(historyRepairs);
 	}
 }

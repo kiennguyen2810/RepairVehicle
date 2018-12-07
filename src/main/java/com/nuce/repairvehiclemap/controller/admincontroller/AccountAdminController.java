@@ -41,10 +41,14 @@ public class AccountAdminController {
 	
 	@RequestMapping(value = {"/", "/index"})
 	public String index(Model model){
-		if(httpSession.getAttribute("role").equals("ROLE_ADMIN")){
-			model.addAttribute("username", httpSession.getAttribute("username"));
-			return "admin/home";
-		} else{
+		if(httpSession.getAttribute("role")!=null){
+			if(httpSession.getAttribute("role").equals("ROLE_ADMIN")){
+				model.addAttribute("username", httpSession.getAttribute("username"));
+				return "admin/home";
+			} else{
+				return "redirect:/admin/login";
+			}
+		} else {
 			return "redirect:/admin/login";
 		}
 	}
