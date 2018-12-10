@@ -64,13 +64,16 @@
   <div class="card card-register mx-auto mt-5">
         <div class="card-header bg-success text-light"> History Repair </div>
         <div class="card-body">
-
-        <div class="col-sm-6">
-          <input class="form-control" id="textsearch" type="text"  placeholder="Search Shop or Service">
-			<input type="submit" class="btn btn-success bt" value="Search" onclick="search()">
-			<input id="datepicker" width="276" />
-			
-        </div>
+        
+		<div class="row">
+	        <div class="col-sm-6">
+	          <input class="form-control" id="textsearch" type="text"  placeholder="Search Shop or Service">
+	        </div>
+	        <div class="col-sm-6">
+	        	<input id="datepicker" width="276" placeholder="Pick dates" />
+				<input type="submit" class="btn btn-success bt" value="Search" onclick="search()" style="margin: 7px 0px -15px 203px;">
+	        </div>
+		</div>
          
         <table  id="table" class="table" style="width:100%; margin-bottom: 50px; margin-top: 50px;">
           <thead class="bg-success text-light" id="toptable">

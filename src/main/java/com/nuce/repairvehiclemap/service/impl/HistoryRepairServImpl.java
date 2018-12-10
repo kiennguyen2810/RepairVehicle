@@ -21,7 +21,7 @@ import com.nuce.repairvehiclemap.service.HistoryRepairServ;
 
 @org.springframework.stereotype.Service
 public class HistoryRepairServImpl implements HistoryRepairServ {
-	
+
 	@Autowired
 	HistoryRepairDao historyRepairDao;
 	@Autowired
@@ -30,8 +30,7 @@ public class HistoryRepairServImpl implements HistoryRepairServ {
 	ShopDao shopDao;
 	@Autowired
 	ServiceDao serviceDao;
-	
-	
+
 	@Override
 	public void saveHistoryRepair(String username, Integer idShop, List<Integer> idServices) {
 		Account account = accountDao.getAccountByUserName(username);
@@ -41,16 +40,15 @@ public class HistoryRepairServImpl implements HistoryRepairServ {
 			Service service = serviceDao.getServiceById(id);
 			services.add(service);
 		}
-		
+
 		historyRepairDao.saveHistoryRepair(account, shop, services);
 	}
-
-
 
 	@Override
 	public List<HistoryRepair> getHistoryRepair(String userName) {
 		Account account = accountDao.getAccountByUserName(userName);
-		List<HistoryRepair> historyRepairs = account.getHistoryRepairs();;
+		List<HistoryRepair> historyRepairs = account.getHistoryRepairs();
+		;
 		List<HistoryRepair> historyRepairs2 = new ArrayList<HistoryRepair>();
 		for (HistoryRepair historyRepair : historyRepairs) {
 			historyRepair.setAccount(null);
@@ -60,28 +58,27 @@ public class HistoryRepairServImpl implements HistoryRepairServ {
 		return historyRepairs2;
 	}
 
-
-
 	@Override
-	public List<HistoryRepair> searchHistoryRepair(String userName,
-			String textSearch, String dateStr) {
+	public List<HistoryRepair> searchHistoryRepair(String userName, String textSearch, String dateStr) {
 //		System.out.println(userName);
 //		System.out.println(textSearch);
 //		System.out.println("date" + date); 
-	    
+
 		Account account = accountDao.getAccountByUserName(userName);
-		List<HistoryRepair> historyRepairs = account.getHistoryRepairs();;
+		List<HistoryRepair> historyRepairs = account.getHistoryRepairs();
+		;
 		List<HistoryRepair> historyRepairs2 = new ArrayList<HistoryRepair>();
-		
+		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 		for (HistoryRepair historyRepair : historyRepairs) {
-			if(historyRepair.getShop().getName().contains(textSearch)||historyRepair.getService().getName().contains(textSearch)){
-				
-				Date date = historyRepair.getTime();  
-		        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");  
-		        String strDate = dateFormat.format(date);  
-		        System.out.println("Converted String: " + strDate);
-		        System.out.println(dateStr);
-				if(dateStr.equals(strDate)){
+			Date date = historyRepair.getTime();
+			String strDate = dateFormat.format(date);
+			if (historyRepair.getShop().getName().contains(textSearch)
+					|| historyRepair.getService().getName().contains(textSearch)) {
+				if (dateStr.equals(strDate)) {
+					historyRepair.setAccount(null);
+					historyRepair.getShop().setServices(null);
+					historyRepairs2.add(historyRepair);
+				} else if (dateStr.equals("")) {
 					historyRepair.setAccount(null);
 					historyRepair.getShop().setServices(null);
 					historyRepairs2.add(historyRepair);

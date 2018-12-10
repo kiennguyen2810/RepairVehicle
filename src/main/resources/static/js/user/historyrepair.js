@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 function showtable() {
 	$('#tbodyid').empty();
-	var username = $("#username").text();;
+	var username = $("#username").text();
 	$.ajax({
 		async : true,
 		url : "http://localhost:8080/repairvehicle/historyrepair/gethistoryrepair/" + username,
@@ -19,8 +19,8 @@ function showtable() {
 		},success : function(data) {
 			$.each(data,function(k, v) {
 				var time = new Date(v.time);
-				console.log(time);
-				console.log(time.getMonth());
+//				console.log(time);
+//				console.log(time.getMonth());
 				var timeString = time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds() + " - " + time.getDate() + "/" + (time.getMonth()+1) + "/" + time.getFullYear();
 				var html = '<tr><td>' + ++k + '</td>';
 				html += '<td id="shop' + v.shop.id +'">' + v.shop.name + '</td>';
@@ -43,7 +43,7 @@ function search() {
 	var username = $("#username").text();
 	var textsearch = $("#textsearch").val();
 	var date = $("#datepicker").val();
-	console.log(date);
+//	console.log(date);
 	$.ajax({
 		async : true,
 		url : "http://localhost:8080/repairvehicle/historyrepair/gethistoryrepair/?username="+ username + "&textsearch=" + textsearch + "&date=" + date,

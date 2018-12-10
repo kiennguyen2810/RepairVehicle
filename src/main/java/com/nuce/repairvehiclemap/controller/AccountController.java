@@ -106,6 +106,11 @@ public class AccountController {
 		return "user/register";
 	}
 	
+	@RequestMapping("/forgotpassword")
+	public String forgotpassword() {
+		return "user/forgotpassword";
+	}
+	
 	
 	@RequestMapping(value = {"/", "/home"})
 	public String home(Model model) {
