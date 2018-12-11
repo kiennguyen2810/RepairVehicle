@@ -104,12 +104,12 @@ function getShopAround(){
 	
 	var latitude, longitude;
 	//get location user
-//	if (navigator.geolocation) {
-//        navigator.geolocation.getCurrentPosition(function(position) {
-//        	latitude = position.coords.latitude;
-//        	longitude = position.coords.longitude;
-        	latitude = 21.0309505;
-        	longitude = 105.7828888,21;
+	if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+        	latitude = position.coords.latitude;
+        	longitude = position.coords.longitude;
+//        	latitude = 21.0309505;
+//        	longitude = 105.7828888,21;
         	console.log("lat 1:" + latitude);
         	console.log("long 1:" + longitude);
   //      	21.0309505,105.7828888,21
@@ -151,10 +151,10 @@ function getShopAround(){
         		drop(userLatLng);
         		
         	});
-//        });
-//    } else {
-//        alert("Geolocation is not supported by this browser.");
-//    }
+        });
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
 	
 //	latitude = 21;
 //	longitude = 105.84;
@@ -235,8 +235,9 @@ function calcRoute(userLatLng, position, directionsDisplay) {
 			   ' <img class="card-img-top" src="'+ shop.image + '" alt="Card image" style="width:100%;height: 138px;">' +
 			   ' <div class="card-body">' +
 			     ' <h4 class="card-title">' + shop.name + '</h4>' +
-			     ' <h6 class="card-text">Phone:' + shop.phone + '</h6>' +
+			     ' <h6 class="card-text">Phone: ' + shop.phone + '</h6>' +
 			     ' <h6 class="card-text">Address: ' + shop.address + '</h6>' +
+			     ' <h6 class="card-text">Open time: ' + shop.openTime + '</h6>' +
 			     '<h6>Total Distance: <span id="total"></span></h6>' +
 			      '<a href="tel:01658475125" class="btn btn-primary">Call me</a>&nbsp;&nbsp;' +
 			      '<a onclick="saveHistoryRepair('+ shop.id +')" class="btn btn-success bt">Xác nhận sửa chữa</a>' +
@@ -270,6 +271,5 @@ function calcRoute(userLatLng, position, directionsDisplay) {
        markers[i].setMap(null);
      }
      markers = [];
-    
    }
 

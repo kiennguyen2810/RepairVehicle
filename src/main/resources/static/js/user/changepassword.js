@@ -12,12 +12,11 @@ function saveChange() {
 	
 			},error : function(error) {
 				alert(error.responseText);
-				location.reload();
+				window.location.assign("/repairvehicle")
 //				console.log(error.responseText);
 			}
 		}).done(function(data) {
 			alert(data);
-//			showProfile();
 		});
 	}
 

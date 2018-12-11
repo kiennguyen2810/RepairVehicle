@@ -1,13 +1,9 @@
 package com.nuce.repairvehiclemap.model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
@@ -48,6 +44,10 @@ public class Shop{
 	private String address;
 
 	private String image;
+	
+	@Size(max = 45)
+	@NotNull
+	private String openTime;
 
 	@NotNull
 	private Double latitude;
@@ -60,16 +60,6 @@ public class Shop{
 	@JoinTable(name = "shop_service", joinColumns = @JoinColumn(name = "id_shop"), inverseJoinColumns = @JoinColumn(name = "id_service"))
 	@JsonIgnoreProperties("shops")
 	private Set<Service> services = new HashSet<>();
-
-//	@Column(nullable = false, updatable = false)
-//	@Temporal(TemporalType.TIMESTAMP)
-//	@CreatedDate
-//	private Date createdAt;
-//
-//	@Column(nullable = false)
-//	@Temporal(TemporalType.TIMESTAMP)
-//	@LastModifiedDate
-//	private Date updatedAt;
 
 	public Integer getId() {
 		return id;
@@ -135,23 +125,14 @@ public class Shop{
 	public void setServices(Set<Service> services) {
 		this.services = services;
 	}
-	
-	
 
-//	public Date getCreatedAt() {
-//		return createdAt;
-//	}
-//
-//	public void setCreatedAt(Date createdAt) {
-//		this.createdAt = createdAt;
-//	}
-//
-//	public Date getUpdatedAt() {
-//		return updatedAt;
-//	}
-//
-//	public void setUpdatedAt(Date updatedAt) {
-//		this.updatedAt = updatedAt;
-//	}
+	public String getOpenTime() {
+		return openTime;
+	}
+
+	public void setOpenTime(String openTime) {
+		this.openTime = openTime;
+	}
+	
 
 }

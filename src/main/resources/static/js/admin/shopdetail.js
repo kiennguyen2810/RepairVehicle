@@ -48,6 +48,7 @@ function create() {
 			phone : $("#phone").val(),
 			address : $("#address").val(),
 			image : $("#image").val(),
+			openTime : $("#opentime").val(),
 			latitude : $("#latitude").val(),
 			longitude : $("#longitude").val(),
 			services : serviceids
@@ -87,6 +88,7 @@ function update() {
 			phone : $("#phone").val(),
 			address : $("#address").val(),
 			image : $("#image").val(),
+			openTime : $("#opentime").val(),
 			latitude : $("#latitude").val(),
 			longitude : $("#longitude").val(),
 			services : serviceids
@@ -132,6 +134,7 @@ function validateForm() {
 	var address = document.getElementById('address').value;
 	var phone = document.getElementById('phone').value;
 	var image = document.getElementById('image').value;
+	var opentime = document.getElementById('opentime').value;
 	var latitude = document.getElementById('latitude').value;
 	var longitude = document.getElementById('longitude').value;
 	var format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
@@ -148,6 +151,9 @@ function validateForm() {
 		return false;
 	} else if (image == '') {
 		alert('Image is not empty');
+		return false;
+	} else if (opentime == '') {
+		alert('Open time is not empty');
 		return false;
 	} else if (latitude == '') {
 		alert('Latitude is not empty');

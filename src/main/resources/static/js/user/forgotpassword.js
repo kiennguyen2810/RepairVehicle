@@ -11,7 +11,6 @@ function sendEmail() {
 					data : JSON.stringify(account),
 					error: function(error){
 						alert(error.responseText);
-						
 					}
 				}).done(function(data, textStatus, request) {
 					alert(request.getResponseHeader('Result'));

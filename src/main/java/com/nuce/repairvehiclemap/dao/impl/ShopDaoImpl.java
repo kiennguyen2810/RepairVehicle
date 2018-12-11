@@ -69,6 +69,7 @@ public class ShopDaoImpl implements ShopDao {
 		Shop shop2 = em.find(Shop.class, id);
 		shop2.setAddress(shop.getAddress());
 		shop2.setImage(shop.getImage());
+		shop2.setOpenTime(shop.getOpenTime());
 		shop2.setLatitude(shop.getLatitude());
 		shop2.setLongitude(shop.getLongitude());
 		shop2.setName(shop.getName());

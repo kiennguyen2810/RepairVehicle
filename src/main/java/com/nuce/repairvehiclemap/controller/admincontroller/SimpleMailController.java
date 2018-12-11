@@ -26,33 +26,54 @@ public class SimpleMailController {
 	@PostMapping("/resetpass")
 	public ResponseEntity<?> sendMail(@RequestBody Account account) {
 		HttpHeaders headers = new HttpHeaders();
-		
-		
-		Account account2 = accountServ.getAccountByUserName(account.getUsername());
-		if(account2 == null) {
+		if(!accountServ.checkAccountExist(account)){
 			headers.add("Result", "Account not registered!");
 			return ResponseEntity.accepted().headers(headers).build();
-		} else if (account2.getRole().equals("ROLE_ADMIN")) {
+		}
+		
+		Account account2 = accountServ.getAccountByUserName(account.getUsername());
+		if (account2.getRole().equals("ROLE_ADMIN")) {
 			headers.add("Result", "Account of the administrator!");
 			return ResponseEntity.accepted().headers(headers).build();
 		}
 		
-		MimeMessage message = sender.createMimeMessage();
-		MimeMessageHelper helper = new MimeMessageHelper(message);
-		try {
-			helper.setTo("kiennguyen2810.nuce@gmail.com");
-			helper.setText("Change pass :)");
-			helper.setSubject("Doi mat khau sua xe lan 2");
-		} catch (MessagingException e) {
-			e.printStackTrace();
-			headers.add("Result", "Error while sending mail .. Please come back later!");
+		if(account.getEmail().equals(account2.getEmail())){
+			MimeMessage message = sender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(message);
+			String newPass = randomString(8);
+			try {
+				helper.setTo(account.getEmail());
+				helper.setSubject("Change Password");
+				helper.setText("New password: " + newPass);
+			} catch (MessagingException e) {
+				e.printStackTrace();
+				headers.add("Result", "Error while sending mail .. Please come back later!");
+				return ResponseEntity.accepted().headers(headers).build();
+			}
+			try {
+				sender.send(message);
+			} catch (Exception e) {
+				headers.add("Result", "Error while sending mail .. Please come back later!");
+				return ResponseEntity.accepted().headers(headers).build();
+			}
+			account2.setPassword(newPass);
+			accountServ.saveAccount(account2);
+			headers.add("Result", "Please check email and get new password!");
+			return ResponseEntity.accepted().headers(headers).build();
+		} else {
+			headers.add("Result", "Email addresses don't match!");
 			return ResponseEntity.accepted().headers(headers).build();
 		}
-		sender.send(message);
-		headers.add("Result", "Mail Sent Success! Check your mail and get password!");
-		return ResponseEntity.accepted().headers(headers).build();
 	}
 
-
+	public String randomString(int count){
+		final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		StringBuilder builder = new StringBuilder();
+		while (count-- != 0) {
+		int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
+		builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+		}
+		return builder.toString();
+	}
 
 }
